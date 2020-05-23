@@ -1,0 +1,5 @@
+<library path="lib/libmy_controller_lib">
+    <class name="gazebo/GazeboRosMyTricycleDrive"
+           type="gazebo::GazeboRosMyTricycleDrive"
+           base_class_type="gazebo::ModelPlugin"  />
+</library>

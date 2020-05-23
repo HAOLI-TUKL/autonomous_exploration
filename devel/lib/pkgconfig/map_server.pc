@@ -1,0 +1,8 @@
+prefix=/home/parallels/github_ws/autonomous_exploration/devel
+
+Name: map_server
+Description: Description of map_server
+Version: 1.16.3
+Cflags: -I/home/parallels/github_ws/autonomous_exploration/src/map_server/include
+Libs: -L${prefix}/lib -lmap_server_image_loader
+Requires: roscpp nav_msgs tf2

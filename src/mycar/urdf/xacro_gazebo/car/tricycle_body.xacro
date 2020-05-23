@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+  <xacro:property name="radius_actuated_wheel" value="0.055" />
+  <xacro:property name="radius_encoder_wheel" value="0.055" />
+
+  <xacro:property name="DX" value="0.75" />
+  <xacro:property name="DY" value="0.69" />
+  <xacro:property name="DZ" value="0.375" />
+
+  <xacro:property name="DX2" value="0.26" />
+  <xacro:property name="DY2" value="0.30" />
+  <xacro:property name="DZ2" value="0.225" />
+
+  <xacro:include filename="$(find mycar)/urdf/xacro_gazebo/car/inertia_tensors.xacro"/>
+  <xacro:include filename="$(find mycar)/urdf/xacro_gazebo/car/tricycle_chassis.xacro"/>
+  <xacro:include filename="$(find mycar)/urdf/xacro_gazebo/car/wheel.xacro"/>
+  <xacro:include filename="$(find mycar)/urdf/xacro_gazebo/car/wheel_actuated.xacro"/>
+  <xacro:include filename="$(find mycar)/urdf/xacro_gazebo/car/tricycle_plugins.xacro"/>
+
+  <xacro:macro name="tricycle_body" params="parent meshes">
+
+    <!-- base_link -->
+    <link name="${parent}"/>
+
+    <!-- Chassis -->
+    <xacro:tricycle_chassis name="chassis" parent="${parent}" xyz="${DX/2} 0 ${DZ/2+0.225}" rpy="0 0 0"  meshes="${meshes}" DX="${DX}" DY="${DY}" DZ="${DZ}"/>
+    <xacro:tricycle_chassis name="chassis2" parent="${parent}" xyz="${DX2/2} 0 0.7125" rpy="0 0 0"  meshes="${meshes}" DX="${DX2}" DY="${DY2}" DZ="${DZ2}"/>
+    <!-- Wheels  -->
+    <xacro:wheel name="left"   parent="${parent}"  xyz="${radius_encoder_wheel}   ${0.69/2-0.03/2} ${radius_encoder_wheel}" rpy="${-M_PI/2} 0 0" radius="${radius_encoder_wheel}" length="0.05" meshes="${meshes}"/>
+    <xacro:wheel name="right"    parent="${parent}"  xyz="${radius_encoder_wheel}  ${-0.69/2+0.03/2} ${radius_encoder_wheel}" rpy="${-M_PI/2} 0 0" radius="${radius_encoder_wheel}" length="0.05" meshes="${meshes}"/>
+    <xacro:wheel_actuated name="front"  parent="${parent}"  xyz="${0.75*3/4}  0.0   ${radius_actuated_wheel}" rpy="${-M_PI/2} 0 0" radius="${radius_actuated_wheel}" length="0.05" meshes="${meshes}"/>
+
+    <!-- Motor plugin -->
+    <xacro:tricycle_drive />
+
+  </xacro:macro>
+</robot>

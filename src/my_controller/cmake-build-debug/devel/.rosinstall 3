@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/parallels/lecture/v0/src/my_controller/cmake-build-debug/devel/setup.sh
