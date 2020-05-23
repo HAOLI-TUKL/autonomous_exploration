@@ -30,6 +30,7 @@ download the code directly, and directory autonomous_exploration is considered a
 
 # Maintainers
 githubleoleo leochina2018@163.com
+jasonchenj 
 # More info
 
 # References
