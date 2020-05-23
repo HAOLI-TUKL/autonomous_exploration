@@ -30,6 +30,8 @@ download the code directly, and directory autonomous_exploration is considered a
 * my_car package and my_controller mainly deals with the vehicle model and driver for the simulation in Gazebo.
 # Example
 ![image](https://github.com/githubleoleo/autonomous_exploration/blob/master/images/astar.png)
+
+video of the simulation can be found :https://www.youtube.com/watch?v=Z0UcYPeM29c
     
       
 # Maintainers
