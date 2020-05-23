@@ -25,10 +25,11 @@ download the code directly, and directory autonomous_exploration is considered a
 `roslaunch mycar launch_all.launch`
 
 # Technical Overview
+
 # Example
 
 # Maintainers
-
+githubleoleo leochina2018@163.com
 # More info
 
 # References
