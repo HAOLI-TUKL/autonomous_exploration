@@ -27,7 +27,7 @@ download the code directly, and directory autonomous_exploration is considered a
 # Technical Overview
 
 # Example
-![image](http://github.com/githubleoleo/autonomous_exploration/raw/masterimages/astar.png)
+![image](https://github.com/githubleoleo/autonomous_exploration/blob/master/images/astar.png)
     
       
 # Maintainers
