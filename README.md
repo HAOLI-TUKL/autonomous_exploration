@@ -3,8 +3,10 @@ autonomous exploration of a mobile vechicle using frontier_based algorithm for t
 the move_base.
 
 # Prerequisite
+- ubuntu 18.04
 - ROS is installed
-- 
+- gmapping
+
 # Install
 download the code directly, and directory autonomous_exploration is considered as the workspace.    
 `git clone https://github.com/githubleoleo/autonomous_exploration.git`       
@@ -21,9 +23,13 @@ download the code directly, and directory autonomous_exploration is considered a
 
 4. call the launch file to run all the nodes
 `roslaunch mycar launch_all.launch`
+
+# Technical Overview
 # Example
 
-
-
 # Maintainers
+
+# More info
+
+# References
 
