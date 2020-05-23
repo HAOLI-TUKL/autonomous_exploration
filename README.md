@@ -29,7 +29,7 @@ download the code directly, and directory autonomous_exploration is considered a
 # Example
 
 # Maintainers
-githubleoleo leochina2018@163.com
+githubleoleo leochina2018@163.com     
 jasonchenj 
 # More info
 
