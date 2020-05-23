@@ -1,8 +1,0 @@
-prefix=/home/parallels/github_ws/autonomous_exploration/devel
-
-Name: mycar
-Description: Description of mycar
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
