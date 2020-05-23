@@ -9,7 +9,7 @@ the move_base.
 
 # Install
 download the code directly, and directory autonomous_exploration is considered as the workspace.    
-`git clone https://github.com/githubleoleo/autonomous_exploration.git`       
+`git clone https://github.com/HAOLI-TUKL/autonomous_exploration.git`       
 
 # Usage
 1. enter the workspace
