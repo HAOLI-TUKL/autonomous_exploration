@@ -159,6 +159,38 @@ target_link_libraries(move_base_rrt
         ${catkin_LIBRARIES}
         )
 
+#for release
+#[[add_executable(move_base_rrt_star
+        src/move_base_rrt_star.cpp
+        src/inflation_obstacle_builder.cpp
+        src/RRT_STAR.cpp
+        src/pid.cpp
+        )
+add_dependencies(move_base_rrt_star ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(move_base_rrt_star
+        ${catkin_LIBRARIES}
+        )]]
+#for test
+add_executable(my_move_base_rrtstar
+        src/inflation_obstacle_builder.cpp
+        src/RRT_STAR.cpp
+        src/my_move_base_rrtstar.cpp
+        )
+add_dependencies(my_move_base_rrtstar ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(my_move_base_rrtstar
+        ${catkin_LIBRARIES}
+        )
+#for test
+add_executable(my_move_base_rrt
+        src/inflation_obstacle_builder.cpp
+        src/RRT.cpp
+        src/my_move_base_rrt.cpp
+        )
+add_dependencies(my_move_base_rrt ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(my_move_base_rrt
+        ${catkin_LIBRARIES}
+        )
+
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/my_move_base.cpp
