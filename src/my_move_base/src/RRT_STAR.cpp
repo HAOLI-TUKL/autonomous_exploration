@@ -25,6 +25,8 @@ void RRT_STAR::set_index_free_space(){
 }
 
 void RRT_STAR::build_tree() {
+//    cout<<"11 "<<endl;
+
     new_map = my_map;
     set_index_free_space();
     tree.clear();
@@ -33,15 +35,23 @@ void RRT_STAR::build_tree() {
     tree.push_back(starting_point);
     double count_skip;
     int max = index_free_space.size();
-    int runningcount = 30000;
+//    cout<<"size of ..... "<<index_free_space.size()<<endl;
+    int runningcount = 6000;
+//    cout<<"22 "<<endl;
+
     while (runningcount != 0 ) {
         runningcount --;
         srand(runningcount);
+//        cout<<"221 "<<endl;
+
         int rand_index = rand()%max;
+
+//        cout<<"22 2"<<endl;
         int rand_x = (index_free_space[rand_index]+ my_map.info.width)%my_map.info.width;
+//        cout<<"22 3"<<endl;
         int rand_y = floor(index_free_space[rand_index]/my_map.info.width);
         new_map.data[rand_x+rand_y*my_map.info.width] = 50;
-
+//        cout<<"33 "<<endl;
         vector<double> distance_vec;
         for (int j = 0; j < tree.size(); ++j) {
 
@@ -50,7 +60,7 @@ void RRT_STAR::build_tree() {
 
         auto smallest = min_element(distance_vec.begin(),distance_vec.end()) - distance_vec.begin();
         RRT_STAR::cell near_cell = tree[smallest];
-
+//        cout<<"44 "<<endl;
 
         vector<int> rand_cell;
         rand_cell.push_back(rand_x);
@@ -60,43 +70,138 @@ void RRT_STAR::build_tree() {
         near.push_back(near_cell.y);
 
         vector<int> new_ce =  RRT_STAR::get_new_cell( near ,  rand_cell  );
-
+//        cout<<"55 "<<endl;
         int gridXY[2] = {new_ce[0],new_ce[2]};
         vector<double> coordXY = grid_to_coord(gridXY);
         RRT_STAR::cell n_c(new_ce[0],new_ce[1],new_ce[0]+new_ce[1]*my_map.info.width,coordXY[0],coordXY[1],id_for_alloc,0);
         id_for_alloc++;
-        new_map.data[new_ce[0]+new_ce[1]*my_map.info.width] = 80;
 
-        if(collisionChecking(near_cell,n_c)){
+//        cout<<"1 "<<endl;
 
-            n_c.parent_id = near_cell.id;
-            tree.push_back(n_c);
+        if(CellCollisionChecking(n_c)){
 
+            vector<double> dis_candidate_to_n_c;//collect the distances from the candidates to the n_c
+            vector<int> inside_circle_cell_index;//collect all the indice of the cells insider the circle
+            for(int index = 0; index < tree.size(); index++ ){
+                double dis = sqrt(pow((tree[index].x - n_c.x),2)+pow((tree[index].y - n_c.y),2));
+                if (dis <= circle_radius_){
+                    dis_candidate_to_n_c.push_back(dis);
+                    inside_circle_cell_index.push_back(index);
+                }
+            }
+//            cout<<"size of dis_candidate_to_n_c : "<<dis_candidate_to_n_c.size()<<endl;
+//            cout<<"size of inside_circle_cell_index : "<<inside_circle_cell_index.size()<<endl;
+
+//            cout<<"2 "<<endl;
+
+            vector<double> dis_startingcell_to_candidate;//collect the distances from starting point to the candidates in the circle
+            for(auto& index : inside_circle_cell_index){
+                double distance = GetDistanceFromStartingPoint(tree[index]);
+//                cout<<"dis from starting to candidates : "<<distance<<endl;
+                dis_startingcell_to_candidate.push_back(distance);
+            }
+            vector<double> dis_startingcell_to_n_c;//collect the distances from starting point to the n_c
+            for(int i = 0;i < dis_startingcell_to_candidate.size();i++){
+                dis_startingcell_to_n_c.push_back(dis_candidate_to_n_c[i] + dis_startingcell_to_candidate[i]);
+            }
+            vector<double> dis_tmp = dis_startingcell_to_n_c;//used for the case when collision happens
+            bool cell_has_added = false;
+            int parent_index;
+            while (std::count(dis_tmp.begin(), dis_tmp.end(), 10000.0) != dis_tmp.size() ){
+//                cout<<"count 10000 : "<<std::count(dis_tmp.begin(), dis_tmp.end(), 10000.0) <<endl;
+//                cout<<"count dis-tmp  : "<<dis_tmp.size() <<endl;
+                auto smallest = min_element(dis_tmp.begin(),dis_tmp.end()) - dis_tmp.begin();
+                if(PathCollisionChecking(tree[inside_circle_cell_index[smallest]],n_c)){
+                    parent_index = smallest;
+                    n_c.parent_id = tree[inside_circle_cell_index[smallest]].id;
+                    tree.push_back(n_c);
+//                    new_map.data[new_ce[0]+new_ce[1]*my_map.info.width] = 80;
+                    cell_has_added = true;
+                    break;
+                } else{
+                    dis_tmp[smallest] = 10000.0;
+//                    cout<<"no parent can be reached. "<<endl;
+                }
+            }
+//            cout<<"3 "<<endl;
+
+
+            if(cell_has_added == false){ continue;}
+            for(int i = 0 ;  i < inside_circle_cell_index.size();i++ ){
+                if( i != parent_index){
+                    double dis_starting_nc_candidate = dis_startingcell_to_candidate[parent_index] + dis_candidate_to_n_c[parent_index] + dis_candidate_to_n_c[i];
+                    if(dis_startingcell_to_candidate[i] > dis_starting_nc_candidate){
+                        if(PathCollisionChecking(tree[inside_circle_cell_index[i]],n_c)){
+                            tree[inside_circle_cell_index[i]].parent_id = n_c.id;
+//                            cout<<" rewiring ... "<<endl;
+
+                        } else{
+//                            cout<<"collision happens while rewiring ... "<<endl;
+                        }
+                    }
+                } else{
+                }
+            }
+
+//            cout<<"4 "<<endl;
 
         }
-        else{
-            cout<<"collision !!"<<endl;
-            continue;
-        }
-        if (sqrt((goal.x-n_c.x)*(goal.x-n_c.x) + (goal.y-n_c.y)*(goal.y-n_c.y)) < thres){
-            cout<<"**********reach goal*********"<<endl;
-            search_success_ = true;
-            break;
-        }
+
+//        if (sqrt((goal.x-n_c.x)*(goal.x-n_c.x) + (goal.y-n_c.y)*(goal.y-n_c.y)) < thres){
+//            cout<<"**********reach goal*********"<<endl;
+//            search_success_ = true;
+////            goal_id_after_search_ = n_c.id;
+//            break;
+//        }
 
     }
-    if(runningcount == 0 && search_success_ == false){
-        cout<<"**********no path found*********"<<endl;
-        return;
-    } else{
-        build_path();
-        return;
-    }
+//    if( search_success_ == false){
+//        cout<<"**********no path found*********"<<endl;
+//        return;
+//    } else{
+//        build_path();
+//        return;
+//    }
 
-
+     build_path();
 
 }
-bool RRT_STAR::collisionChecking(RRT_STAR::cell near_c,RRT_STAR::cell new_c){
+bool RRT_STAR::CellCollisionChecking(RRT_STAR::cell& candidate){
+    return my_map.data[candidate.x + candidate.y  * my_map.info.width] == 0;
+};
+
+double RRT_STAR::GetDistanceFromStartingPoint(RRT_STAR::cell& candiate){
+    RRT_STAR::cell* search_pointer;
+    double distance_from_candidate_to_starting_point = 0;
+    for(auto& cell : tree){
+        if(candiate.id == cell.id){
+            search_pointer = &cell;
+//            cout<<"set!!!!!!!!!!!!!!!!!!!!!!!!!!!"<<endl;
+        }
+    }
+    int count = 10000;
+    while (count != 0 ){
+        count -=1;
+        if( search_pointer->id == starting_point.id){
+            break;
+        }
+        int parent_id = search_pointer->parent_id;
+//        cout<<"parent_id : "<<parent_id<<endl;
+        for (int i = 0; i < tree.size(); ++i) {
+            if(tree[i].id == parent_id){
+                double dis = sqrt(pow((tree[i].x - search_pointer->x),2)+pow((tree[i].y - search_pointer->y),2));
+                distance_from_candidate_to_starting_point += dis;
+                search_pointer = &tree[i];
+//                cout<<"find parent"<<endl;
+                break;
+            }
+        }
+    }
+    return distance_from_candidate_to_starting_point;
+}
+
+
+bool RRT_STAR::PathCollisionChecking(RRT_STAR::cell near_c,RRT_STAR::cell new_c){
     int delta_x;
     if (new_c.x > near_c.x){
         delta_x = 1;
@@ -136,9 +241,25 @@ bool RRT_STAR::collisionChecking(RRT_STAR::cell near_c,RRT_STAR::cell new_c){
     return true;
 }
 void RRT_STAR::build_path(){
-    if(search_success_ == false){ return;}
-    path.push_back(goal);
-    RRT_STAR::cell c = tree.back();
+//    if(search_success_ == false){ return;}
+//    for(auto& cell : tree){
+//        if(cell.id == goal_id_after_search_){
+//            path.push_back(cell);
+//        }
+//    }
+
+    double min_dis = 10000;
+    int cloest_to_goal_index = 0;
+    for(int i = 0 ; i<tree.size();i++){
+        double new_dis = sqrt(pow((tree[i].x - goal.x),2)+pow((tree[i].y - goal.y),2));
+        if( new_dis < min_dis){
+            min_dis = new_dis;
+            cloest_to_goal_index = i;
+        }
+    }
+    path.push_back(tree[cloest_to_goal_index]);
+//    path.push_back(goal);
+    RRT_STAR::cell c = path.back();
     int count = 10000;
     while (count != 0 ){
         count -=1;

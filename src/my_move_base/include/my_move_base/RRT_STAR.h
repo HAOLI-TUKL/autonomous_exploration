@@ -27,6 +27,7 @@ public:
         double y_coord = 0;
         int id = 0;
         int parent_id = 0;
+
     };
 
     RRT_STAR(){};
@@ -39,20 +40,25 @@ public:
     vector<int> index_free_space;
     vector<RRT_STAR::cell> path;
     bool search_success_ = false;
-    double thres = 2;
-    double step = 4;
+
     int id_for_alloc = 0;//id = 0 for the starting point,its parent is also 0 ; id = -1 for the goal
     void set_index_free_space();
     void build_tree();
-    bool collisionChecking(RRT_STAR::cell near_c,RRT_STAR::cell new_c);
     void build_path();
     vector<int> get_new_cell(vector<int> near_cell , vector<int> rand_cell );
     vector<double > grid_to_coord(int* gridXY);
     std::vector<int> coord_to_grid(std::vector<double> coord);
     void SetStartingGoalPoint(double x_coord_s,double y_coord_s,double x_coord_g,double y_coord_g);
-
 private:
-    vector<RRT_STAR::cell> tmp_path_;// used when addparentnode and rewire
+//    vector<RRT_STAR::cell> tmp_path_;// used when addparentnode and rewire
+    int goal_id_after_search_ = 0;
+    double circle_radius_ = 6;
+    double thres = 8;
+    double step = 4;
+    bool PathCollisionChecking(RRT_STAR::cell near_c,RRT_STAR::cell new_c);
+    bool CellCollisionChecking(RRT_STAR::cell& candidate);
+    double GetDistanceFromStartingPoint(RRT_STAR::cell& candiate);
+
 
 
 };

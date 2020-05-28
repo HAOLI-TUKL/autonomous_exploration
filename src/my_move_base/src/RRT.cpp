@@ -2,7 +2,7 @@
 // Created by parallels on 2/4/20.
 //
 
-#include "../include/my_move_base/RTT.h"
+#include "../include/my_move_base/RRT.h"
 #include <stdlib.h>
 #include <tgmath.h>
 #include <algorithm>

@@ -5,7 +5,7 @@
 #include "std_msgs/String.h"
 #include <sstream>
 #include <iostream>
-#include "../include/my_move_base/RTT.h"
+#include "../include/my_move_base/RRT.h"
 #include <stdlib.h>
 #include <time.h>
 #include "../include/my_move_base/A_star.h"
