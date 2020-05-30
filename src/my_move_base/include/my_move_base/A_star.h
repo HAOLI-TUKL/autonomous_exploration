@@ -32,6 +32,11 @@ public:
         int id = 0;
         int parent_id = 0;
     };
+    A_star(){
+        id_for_use = 0;
+        previous_id_count = 0;
+    }
+    ~A_star(){};
     nav_msgs::OccupancyGrid my_map;
     nav_msgs::OccupancyGrid close_list_map_;//used for display the points in the close list
     vector<A_star::cell> openlist;
@@ -47,8 +52,8 @@ public:
     void SetStartingGoalPoint(double x_coord_s,double y_coord_s,double x_coord_g,double y_coord_g);
 
 private:
-    int id_for_use = 0;
-    int previous_id_count = 0;
+    int id_for_use ;
+    int previous_id_count ;
     bool compare(A_star::cell c1,A_star::cell c2);
     vector<A_star::cell> get_neighbor(A_star::cell cell);
     double get_distance(A_star::cell c1,A_star::cell c2);

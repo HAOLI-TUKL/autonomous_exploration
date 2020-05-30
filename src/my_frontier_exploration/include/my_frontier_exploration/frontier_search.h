@@ -36,7 +36,9 @@ public:
     };
 
     frontier_search(){
-
+        ConfigInit();
+        first_node_dsf_built_ = false;
+        previous_id_count = 0;
     };
     ~frontier_search(){};
     enum cell_state{unknown = -1,free = 0,occupied = 100};
@@ -47,7 +49,7 @@ public:
 //    std::vector<frontier_search::frontier> frontiers_for_delete;//store to delete old markers;
     std::vector<frontier_search::frontier> frontiers_pool;//store all the frontiers from all the maps
     std::vector<std::vector<frontier_search::frontier>> dfs_;
-    int previous_id_count = 0;
+    int previous_id_count ;
     std::vector<double> position;
     std::vector<double> orientation;
     frontier_search::frontier closet_frontier;
@@ -69,8 +71,8 @@ public:
     void build_dfs(std::vector<frontier_search::frontier> frontiers);
 
 private:
-    bool first_node_dsf_built_ = false;//used for indicating whether the first node of dsf has built
-    int ratio_k_nearest_ = 2;//2 for small map
+    bool first_node_dsf_built_ ;//used for indicating whether the first node of dsf has built
+    int ratio_k_nearest_ ;//2 for small map
     bool still_unknown(frontier_search::frontier frontier,inflation_obstacle_builder builder);//decide whether a frontier is still unknown in newest_map_stored
     frontier_search::cell update_center(frontier_search::region  one_class_of_cell);
     std::vector<frontier_search::region> knearest(std::vector<frontier_search::cell> frontier_edge_cells);

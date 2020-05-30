@@ -37,7 +37,10 @@ void RRT_STAR::build_tree() {
     double count_skip;
     int max = index_free_space.size();
 //    cout<<"size of ..... "<<index_free_space.size()<<endl;
-    int runningcount = 3000;
+    const char ConfigFile[]= "./src/my_move_base/Configuration/config.txt";
+    Config configSettings(ConfigFile);
+    int runningcount = configSettings.Read("optimization_count",3000);
+//    int runningcount = 3000;
 //    cout<<"22 "<<endl;
     double duration = 0 ;
     clock_t t1 = clock();

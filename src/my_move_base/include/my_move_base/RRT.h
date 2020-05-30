@@ -28,14 +28,19 @@ public:
         int parent_id = 0;
     };
 
-    RRT(){};
+    RRT(){
+        thres = 2;
+        step = 4;
+        id_for_alloc = 0;//id = 0 for the starting point,its parent is also 0 ; id = -1 for the goal
+        search_success_ = false;
+    };
     ~RRT(){};
     RRT::cell starting_point;
     RRT::cell goal;
     nav_msgs::OccupancyGrid my_map;
     nav_msgs::OccupancyGrid new_map;
     vector<RRT::cell> path;
-    bool search_success_ = false;
+    bool search_success_ ;
     void build_tree();
     void build_path();
     vector<double > grid_to_coord(int* gridXY);
@@ -45,9 +50,9 @@ public:
 private:
     vector<RRT::cell> tree;
     vector<int> index_free_space;
-    double thres = 2;
-    double step = 4;
-    int id_for_alloc = 0;//id = 0 for the starting point,its parent is also 0 ; id = -1 for the goal
+    double thres ;
+    double step ;
+    int id_for_alloc ;//id = 0 for the starting point,its parent is also 0 ; id = -1 for the goal
     void set_index_free_space();
     bool collisionChecking(RRT::cell near_c,RRT::cell new_c);
     vector<int> get_new_cell(vector<int> near_cell , vector<int> rand_cell );

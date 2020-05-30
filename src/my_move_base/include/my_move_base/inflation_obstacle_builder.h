@@ -26,6 +26,9 @@ public:
         int index = 0;
 
     };
+    inflation_obstacle_builder(){
+        ConfigInit();
+    }
     nav_msgs::OccupancyGrid newest_map;
     nav_msgs::OccupancyGrid original_map;
     nav_msgs::OccupancyGrid inflation_map;
@@ -36,7 +39,7 @@ public:
 private:
     vector<inflation_obstacle_builder::cell> obstacle_edge_vec;
     vector<inflation_obstacle_builder::cell> obstacle_space;
-    double inflation_scale = 6; // num of cells
+    double inflation_scale ; // num of cells
     void ConfigInit();
 
 

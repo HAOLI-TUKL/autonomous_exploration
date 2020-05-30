@@ -41,7 +41,12 @@ public:
         int parent_id = 0;
 
     };
-    HybricAStar(){};
+    HybricAStar(){
+        delta_t = 0.4;//0.12 0.3N 0.6Y
+        length_of_car = 0.5075;
+        previous_id_count = 0;
+        id_for_use = 0;
+    };
     ~HybricAStar(){};
     nav_msgs::OccupancyGrid my_map;
     nav_msgs::OccupancyGrid close_list_map_;//used for display the points in the close list
@@ -59,12 +64,12 @@ public:
     void SetStartingGoalPoint(double x_coord_s,double y_coord_s,double theta_s,double x_coord_g,double y_coord_g);
 
 private:
-    double delta_t = 0.4;//0.12 0.3N 0.6Y
-    double length_of_car = 0.5075;
+    double delta_t ;//0.12 0.3N 0.6Y
+    double length_of_car ;
     vector<double> discrete_vs;// m/s
     vector<double> discrete_steering_angles;//radian alpha
-    int previous_id_count = 0;
-    int id_for_use = 0;
+    int previous_id_count ;
+    int id_for_use ;
     bool compare(HybricAStar::cell c1,HybricAStar::cell c2);
     double get_distance(HybricAStar::cell c1,HybricAStar::cell c2);
     double get_distance_1(int x1,int y1,int x2,int y2);

@@ -13,7 +13,7 @@ void inflation_obstacle_builder::ConfigInit(){
 void inflation_obstacle_builder::set_obstacle_space(){
     original_map = newest_map;
     inflation_map = newest_map;
-    ConfigInit();
+
     for (int i = 0; i < original_map.data.size(); i++)
     {
         if (original_map.data[i] == 100 ){ //obstacle or unknown

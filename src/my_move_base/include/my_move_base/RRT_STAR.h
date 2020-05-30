@@ -8,7 +8,7 @@
 
 #include <vector>
 #include "nav_msgs/OccupancyGrid.h"
-
+#include "../Config/Config.h"
 using namespace std;
 
 
@@ -30,7 +30,13 @@ public:
 
     };
 
-    RRT_STAR(){};
+    RRT_STAR(){
+        circle_radius_ = 6;
+        thres = 6;
+        step = 4;
+        id_for_alloc = 0;
+        search_success_ = false;
+    };
     ~RRT_STAR(){};
     RRT_STAR::cell starting_point;
     RRT_STAR::cell goal;
@@ -39,9 +45,8 @@ public:
     vector<RRT_STAR::cell> tree;
     vector<int> index_free_space;
     vector<RRT_STAR::cell> path;
-    bool search_success_ = false;
-
-    int id_for_alloc = 0;//id = 0 for the starting point,its parent is also 0 ; id = -1 for the goal
+    bool search_success_ ;
+    int id_for_alloc ;//id = 0 for the starting point,its parent is also 0 ; id = -1 for the goal
     void set_index_free_space();
     void build_tree();
     void build_path();
@@ -51,9 +56,9 @@ public:
     void SetStartingGoalPoint(double x_coord_s,double y_coord_s,double x_coord_g,double y_coord_g);
 private:
 
-    double circle_radius_ = 6;
-    double thres = 6;
-    double step = 4;
+    double circle_radius_ ;
+    double thres ;
+    double step ;
     bool PathCollisionChecking(RRT_STAR::cell near_c,RRT_STAR::cell new_c);
     bool CellCollisionChecking(RRT_STAR::cell& candidate);
     double GetDistanceFromStartingPoint(RRT_STAR::cell& candiate);

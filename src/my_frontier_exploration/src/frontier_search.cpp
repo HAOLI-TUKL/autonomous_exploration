@@ -21,7 +21,7 @@ void frontier_search::ConfigInit(){
 
 vector<frontier_search::cell> frontier_search::get_frontier_edge_cells(nav_msgs::OccupancyGrid map)
 {
-    ConfigInit();
+
     cout<<"ratio_k_nearest_ : "<<ratio_k_nearest_<<endl;
     frontier_edge_cells.clear();
     frontier_regions.clear();

@@ -9,7 +9,14 @@
 #define PI 3.1415926
 #define length_from_baselink_frontsteering 0.5625 //0.75*3/4
 #define width_left_right_wheel 0.69
-
+void Pid::ConfigInit() {
+    const char ConfigFile[]= "./src/my_move_base/Configuration/config.txt";
+    Config configSettings(ConfigFile);
+    p_vel_ = configSettings.Read("p_vel_",0.45);
+    i_vel_ = configSettings.Read("i_vel_",0.05);
+    p_rot_vel_ = configSettings.Read("p_rot_vel_",1);
+    upper_limit_ = configSettings.Read("upper_limit_",0.3);
+}
 vector<double> Pid::SetVel(vector<vector<double>> baselinkposori,vector<vector<double>> frontsteeringposori,vector<double> goalpos){
     double vel = 0;// m/s
     double poserror = sqrt(pow((frontsteeringposori[0][0] - goalpos[0]),2) + pow((frontsteeringposori[0][1] - goalpos[1]),2));
@@ -28,8 +35,8 @@ vector<double> Pid::SetVel(vector<vector<double>> baselinkposori,vector<vector<d
         cout<<" poserror * p_vel_ :"<< poserror * p_vel_ <<endl;
         cout<<" sum_error_ * i_vel_ :"<< sum_error_ * i_vel_ <<endl;
         cout<<"vel :"<<vel <<endl;
-        if(vel >= 0.3){
-            vel = 0.3;
+        if(vel >= upper_limit_){
+            vel = upper_limit_;
         }
         // this vector represents the direction of x axis of front steering joint
         vector<double> referenceori ;// from current pos to goal pos
