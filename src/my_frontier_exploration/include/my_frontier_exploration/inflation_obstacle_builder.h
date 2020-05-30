@@ -26,12 +26,14 @@ public:
     nav_msgs::OccupancyGrid newest_map;
     nav_msgs::OccupancyGrid original_map;
     nav_msgs::OccupancyGrid inflation_map;
-    vector<inflation_obstacle_builder::cell> obstacle_edge_vec;
-    vector<inflation_obstacle_builder::cell> obstacle_space;
-    double inflation_scale = 6; // num of cells
     void set_obstacle_space();
     void set_obstacle_edge_vec();
     void inflation();
+
+private:
+    double inflation_scale = 6; // num of cells
+    vector<inflation_obstacle_builder::cell> obstacle_edge_vec;
+    vector<inflation_obstacle_builder::cell> obstacle_space;
 
 
 
