@@ -50,10 +50,9 @@ public:
     std::vector<int> coord_to_grid(std::vector<double> coord);
     void SetStartingGoalPoint(double x_coord_s,double y_coord_s,double x_coord_g,double y_coord_g);
 private:
-//    vector<RRT_STAR::cell> tmp_path_;// used when addparentnode and rewire
-    int goal_id_after_search_ = 0;
+
     double circle_radius_ = 6;
-    double thres = 8;
+    double thres = 6;
     double step = 4;
     bool PathCollisionChecking(RRT_STAR::cell near_c,RRT_STAR::cell new_c);
     bool CellCollisionChecking(RRT_STAR::cell& candidate);

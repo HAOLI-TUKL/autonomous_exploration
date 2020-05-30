@@ -10,6 +10,7 @@
 #include <time.h>
 #include <unistd.h>
 #include <Eigen/Dense>
+#include <time.h>
 void RRT_STAR::set_index_free_space(){
     vector<int> index_free;
     for (int i = 0; i < my_map.data.size(); ++i)
@@ -36,10 +37,14 @@ void RRT_STAR::build_tree() {
     double count_skip;
     int max = index_free_space.size();
 //    cout<<"size of ..... "<<index_free_space.size()<<endl;
-    int runningcount = 6000;
+    int runningcount = 3000;
 //    cout<<"22 "<<endl;
-
+    double duration = 0 ;
+    clock_t t1 = clock();
     while (runningcount != 0 ) {
+
+//        cout<<" running count : "<<runningcount<<" ; duration : "<<duration<<endl;
+
         runningcount --;
         srand(runningcount);
 //        cout<<"221 "<<endl;
@@ -147,12 +152,11 @@ void RRT_STAR::build_tree() {
 
         }
 
-//        if (sqrt((goal.x-n_c.x)*(goal.x-n_c.x) + (goal.y-n_c.y)*(goal.y-n_c.y)) < thres){
-//            cout<<"**********reach goal*********"<<endl;
-//            search_success_ = true;
-////            goal_id_after_search_ = n_c.id;
-//            break;
-//        }
+
+        if (sqrt((goal.x-n_c.x)*(goal.x-n_c.x) + (goal.y-n_c.y)*(goal.y-n_c.y)) < thres){
+            cout<<"**********reach goal*********"<<endl;
+            search_success_ = true;
+        }
 
     }
 //    if( search_success_ == false){
@@ -164,7 +168,8 @@ void RRT_STAR::build_tree() {
 //    }
 
      build_path();
-
+     duration = (clock() - t1) * 1.0 / CLOCKS_PER_SEC * 1000;
+     cout<<"duration : "<<duration<<endl;
 }
 bool RRT_STAR::CellCollisionChecking(RRT_STAR::cell& candidate){
     return my_map.data[candidate.x + candidate.y  * my_map.info.width] == 0;

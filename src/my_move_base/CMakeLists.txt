@@ -160,7 +160,7 @@ target_link_libraries(move_base_rrt
         )
 
 #for release
-#[[add_executable(move_base_rrt_star
+add_executable(move_base_rrt_star
         src/move_base_rrt_star.cpp
         src/inflation_obstacle_builder.cpp
         src/RRT_STAR.cpp
@@ -169,7 +169,7 @@ target_link_libraries(move_base_rrt
 add_dependencies(move_base_rrt_star ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(move_base_rrt_star
         ${catkin_LIBRARIES}
-        )]]
+        )
 #for test
 add_executable(my_move_base_rrtstar
         src/inflation_obstacle_builder.cpp

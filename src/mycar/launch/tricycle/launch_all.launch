@@ -47,11 +47,14 @@
     <node name="my_frontier" pkg="my_frontier_exploration" type="frontier"  />
 
     <!-- run move_base using astar -->
-    <node name="move_base" pkg="my_move_base" type="move_base_astar"  />
+    <!-- node name="move_base" pkg="my_move_base" type="move_base_astar"  /-->
 
 
     <!-- run move_base using rrt -->
-    <!--node name="move_base" pkg="my_move_base" type="move_base_rrt"  /-->
+    <!-- node name="move_base" pkg="my_move_base" type="move_base_rrt"  /-->
+
+    <!-- run move_base using rrt* -->
+    <node name="move_base" pkg="my_move_base" type="move_base_rrt_star"  />
 
 
     <!-- run move_base using hybrid astar -->
