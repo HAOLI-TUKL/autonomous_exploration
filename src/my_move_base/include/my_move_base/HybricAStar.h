@@ -46,30 +46,30 @@ public:
     nav_msgs::OccupancyGrid my_map;
     nav_msgs::OccupancyGrid close_list_map_;//used for display the points in the close list
     nav_msgs::OccupancyGrid neighbor_map_;//used for display the points named neighbor
-
     vector<HybricAStar::cell> openlist;
     vector<HybricAStar::cell> closelist;
     HybricAStar::cell starting_point;
     HybricAStar::cell goal;
     vector<HybricAStar::cell> path;
+    bool search_success_ = true;
+    void A_star_search();
+    vector<double > grid_to_coord(int* gridXY);
+    std::vector<int> coord_to_grid(std::vector<double> coord);
+    void initialize();
+    void SetStartingGoalPoint(double x_coord_s,double y_coord_s,double theta_s,double x_coord_g,double y_coord_g);
+
+private:
     double delta_t = 0.4;//0.12 0.3N 0.6Y
     double length_of_car = 0.5075;
     vector<double> discrete_vs;// m/s
     vector<double> discrete_steering_angles;//radian alpha
     int previous_id_count = 0;
     int id_for_use = 0;
-    bool search_success_ = true;
-    void A_star_search();
     bool compare(HybricAStar::cell c1,HybricAStar::cell c2);
     double get_distance(HybricAStar::cell c1,HybricAStar::cell c2);
     double get_distance_1(int x1,int y1,int x2,int y2);
     vector<HybricAStar::cell> get_neighbor(HybricAStar::cell cell);
-    vector<double > grid_to_coord(int* gridXY);
-    std::vector<int> coord_to_grid(std::vector<double> coord);
-    void initialize();
     void set_path_id();
-    void SetStartingGoalPoint(double x_coord_s,double y_coord_s,double theta_s,double x_coord_g,double y_coord_g);
-
 };
 
 

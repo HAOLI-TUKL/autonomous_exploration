@@ -40,17 +40,21 @@ public:
     A_star::cell goal;
     vector<A_star::cell> path;
     bool search_success_ = true;
+
     void A_star_search();
-    bool compare(A_star::cell c1,A_star::cell c2);
-    double get_distance(A_star::cell c1,A_star::cell c2);
-    double get_distance_1(int x1,int y1,int x2,int y2);
-    vector<A_star::cell> get_neighbor(A_star::cell cell);
     vector<double > grid_to_coord(int* gridXY);
-    int previous_id_count = 0;
-    int id_for_use = 0;
     std::vector<int> coord_to_grid(std::vector<double> coord);
     void SetStartingGoalPoint(double x_coord_s,double y_coord_s,double x_coord_g,double y_coord_g);
+
+private:
+    int id_for_use = 0;
+    int previous_id_count = 0;
+    bool compare(A_star::cell c1,A_star::cell c2);
+    vector<A_star::cell> get_neighbor(A_star::cell cell);
+    double get_distance(A_star::cell c1,A_star::cell c2);
+    double get_distance_1(int x1,int y1,int x2,int y2);
     void set_path_id();
+
 };
 
 

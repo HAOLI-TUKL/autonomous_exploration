@@ -34,23 +34,23 @@ public:
     RRT::cell goal;
     nav_msgs::OccupancyGrid my_map;
     nav_msgs::OccupancyGrid new_map;
-    vector<RRT::cell> tree;
-    vector<int> index_free_space;
     vector<RRT::cell> path;
     bool search_success_ = false;
-    double thres = 2;
-    double step = 4;
-    int id_for_alloc = 0;//id = 0 for the starting point,its parent is also 0 ; id = -1 for the goal
-    void set_index_free_space();
     void build_tree();
-    bool collisionChecking(RRT::cell near_c,RRT::cell new_c);
     void build_path();
-    vector<int> get_new_cell(vector<int> near_cell , vector<int> rand_cell );
     vector<double > grid_to_coord(int* gridXY);
     std::vector<int> coord_to_grid(std::vector<double> coord);
     void SetStartingGoalPoint(double x_coord_s,double y_coord_s,double x_coord_g,double y_coord_g);
 
-
+private:
+    vector<RRT::cell> tree;
+    vector<int> index_free_space;
+    double thres = 2;
+    double step = 4;
+    int id_for_alloc = 0;//id = 0 for the starting point,its parent is also 0 ; id = -1 for the goal
+    void set_index_free_space();
+    bool collisionChecking(RRT::cell near_c,RRT::cell new_c);
+    vector<int> get_new_cell(vector<int> near_cell , vector<int> rand_cell );
 
 };
 
