@@ -10,6 +10,7 @@
 
 #include <nav_msgs/OccupancyGrid.h>
 #include <vector>
+#include "../Config/Config.h"
 
 using namespace std;
 class inflation_obstacle_builder{
@@ -36,6 +37,7 @@ private:
     vector<inflation_obstacle_builder::cell> obstacle_edge_vec;
     vector<inflation_obstacle_builder::cell> obstacle_space;
     double inflation_scale = 6; // num of cells
+    void ConfigInit();
 
 
 };
