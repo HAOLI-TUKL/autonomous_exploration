@@ -8,6 +8,8 @@
 #include "nav_msgs/OccupancyGrid.h"
 #include <rviz_visual_tools/rviz_visual_tools.h>
 #include "inflation_obstacle_builder.h"
+#include "../Config/Config.h"
+
 
 class frontier_search {
 public:
@@ -73,6 +75,7 @@ private:
     frontier_search::cell update_center(frontier_search::region  one_class_of_cell);
     std::vector<frontier_search::region> knearest(std::vector<frontier_search::cell> frontier_edge_cells);
     double get_distance(frontier_search::cell candidate,frontier_search::cell center);
+    void ConfigInit();
 };
 
 

@@ -5,9 +5,16 @@
 #include "../include/my_frontier_exploration/inflation_obstacle_builder.h"
 
 
+void inflation_obstacle_builder::ConfigInit(){
+    const char ConfigFile[]= "./src/my_frontier_exploration/Configuration/config.txt";
+    Config configSettings(ConfigFile);
+    inflation_scale = configSettings.Read("inflation_scale",6);
+}
+
 void inflation_obstacle_builder::set_obstacle_space(){
     original_map = newest_map;
     inflation_map = newest_map;
+    ConfigInit();
     for (int i = 0; i < original_map.data.size(); i++)
     {
         if (original_map.data[i] == 100 ){ //obstacle or unknown

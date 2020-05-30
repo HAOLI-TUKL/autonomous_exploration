@@ -12,9 +12,17 @@
 
 using namespace  std;
 
+
+void frontier_search::ConfigInit(){
+    const char ConfigFile[]= "./src/my_frontier_exploration/Configuration/config.txt";
+    Config configSettings(ConfigFile);
+    ratio_k_nearest_ = configSettings.Read("ratio_k_nearest_",2);
+}
+
 vector<frontier_search::cell> frontier_search::get_frontier_edge_cells(nav_msgs::OccupancyGrid map)
 {
-
+    ConfigInit();
+    cout<<"ratio_k_nearest_ : "<<ratio_k_nearest_<<endl;
     frontier_edge_cells.clear();
     frontier_regions.clear();
     frontiers.clear();

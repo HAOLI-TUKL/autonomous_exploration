@@ -12,6 +12,8 @@
 #include <rviz_visual_tools/rviz_visual_tools.h>
 #include "std_msgs/Bool.h"
 #include "../include/my_frontier_exploration/inflation_obstacle_builder.h"
+#include "../include/Config/Config.h"
+
 ros::Publisher pub;
 ros::Publisher marker_pub;
 ros::Publisher markerArray_pub;
@@ -280,6 +282,7 @@ void NoPathFoundCallback(const std_msgs::Bool no_path_found){
 
 int main(int argc, char **argv)
 {
+
     ros::init(argc, argv, "frontier_exploration");
     ros::NodeHandle n;
     ros::Subscriber sub = n.subscribe("map", 1000, MapCallback);
