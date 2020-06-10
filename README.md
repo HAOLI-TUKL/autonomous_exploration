@@ -1,5 +1,5 @@
 # autonomous_exploration
-autonomous exploration of a mobile vechicle using frontier_based algorithm for the exploration and RRT/RRT*/A*/Hybrid A* for the move_base.
+autonomous exploration of a mobile vechicle using frontier_based algorithm for the exploration and RRT/RRT*/A*/Hybrid A* for the move_base. After the simulation in Gazebo, Sick_tim lidar and jetson tx2 are used for hardware implementation.
 
 # Prerequisite
 - ubuntu 18.04
