@@ -1,5 +1,6 @@
 # autonomous_exploration
-autonomous exploration of a mobile vechicle using frontier_based algorithm for the exploration and RRT/RRT*/A*/Hybrid A* for the move_base.
+Autonomous exploration of a mobile vechicle using frontier_based algorithm for the exploration and RRT/RRT*/A*/Hybrid A* for the move_base. Mobile robot in an unknown environment has to explore the environment autonomously and create a map for it, for which ros package gmapping and a lidar named sick_tim are used. Then frontier_based algorithm would apply a new destination for robot to keep exploring and move_base package generates a viable trajectory from current positon to the destination. Several options are applied when selecting the trajectory generation algorithms including RRT, RRT*, A* and Hybrid A*.
+In Gazebo, the localization of the mobile vehicle can be obtained from Gazebo while the encoders are used in the real test. In addition to the encoders, ros package laser_scan_matcher is used for better localization.
 
 # Prerequisite
 - ubuntu 18.04
@@ -34,7 +35,7 @@ video of the simulation can be found :https://www.youtube.com/watch?v=Z0UcYPeM29
     
       
 # Maintainers
-githubleoleo leochina2018@163.com     
+HAOLI-TUKL leochina2018@163.com     
 jasonchenj 
 # More info
 
