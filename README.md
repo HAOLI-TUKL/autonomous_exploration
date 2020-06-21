@@ -32,7 +32,8 @@ download the code directly, and directory autonomous_exploration is considered a
 ![image](https://github.com/githubleoleo/autonomous_exploration/blob/master/images/astar.png)
 
 video of the simulation can be found :https://www.youtube.com/watch?v=Z0UcYPeM29c
-    
+ 
+
       
 # Maintainers
 HAO LI leochina2018@163.com     
