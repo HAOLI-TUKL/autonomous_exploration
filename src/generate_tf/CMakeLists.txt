@@ -130,11 +130,19 @@ target_link_libraries(generate_tf
         )
 
 # for test
-add_executable(test
-        test/test.cpp
+add_executable(sendcmd
+        test/sendcmd.cpp
         )
-add_dependencies(test ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(test
+add_dependencies(sendcmd ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(sendcmd
+        ${catkin_LIBRARIES}
+        )
+
+add_executable(vehicle
+        src/vehicle.cpp
+        )
+add_dependencies(vehicle ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(vehicle
         ${catkin_LIBRARIES}
         )
 
