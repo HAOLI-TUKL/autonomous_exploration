@@ -35,8 +35,8 @@ video of the simulation can be found :https://www.youtube.com/watch?v=Z0UcYPeM29
     
       
 # Maintainers
-HAOLI-TUKL leochina2018@163.com     
-jasonchenj 
+HAO LI leochina2018@163.com     
+JIANMING CHEN
 # More info
 
 # References
