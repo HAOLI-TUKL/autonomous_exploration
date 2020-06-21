@@ -23,12 +23,12 @@ struct vehicle{
 int main(int argc, char **argv){
     ros::init(argc, argv, "generate_tf");
     ros::NodeHandle n;
-    ros::Rate loop_rate(1000);
+    ros::Rate loop_rate(2000);
     ros::Subscriber sub = n.subscribe("Pose2D", 1000, Pose2dCallback);
     while (ros::ok()){
         ros::spinOnce();
         loop_rate.sleep();
-//        SetFrontSteeringJointFromTF();
+        SetFrontSteeringJointFromTF();
         PublishTF();
         std::cout<<" send "<<std::endl;
 
@@ -53,8 +53,8 @@ void SetFrontSteeringJointFromTF(){ //TO REPLACE
     tf::TransformListener listener;
     tf::StampedTransform transform;
     try{
-        listener.waitForTransform("odom", "front_steering", ros::Time(0), ros::Duration(3.0));
-        listener.lookupTransform("odom", "front_steering",
+        listener.waitForTransform("/odom", "/front_steering", ros::Time(0), ros::Duration(3.0));
+        listener.lookupTransform("/odom", "/front_steering",
                                  ros::Time(0), transform);
     }
     catch (tf::TransformException ex) {
@@ -65,8 +65,8 @@ void SetFrontSteeringJointFromTF(){ //TO REPLACE
     my_vehicle.y_coord_front_steering = transform.getOrigin().y();
     // ########################
     try{
-        listener.waitForTransform("base_link", "front_steering", ros::Time(0), ros::Duration(3.0));
-        listener.lookupTransform("base_link", "front_steering",
+        listener.waitForTransform("/base_link", "/front_steering", ros::Time(0), ros::Duration(3.0));
+        listener.lookupTransform("/base_link", "/front_steering",
                                  ros::Time(0), transform);
     }
     catch (tf::TransformException ex) {
@@ -79,8 +79,8 @@ void SetFrontSteeringJointFromTF(){ //TO REPLACE
 
     // ########################
     try{
-        listener.waitForTransform("odom", "base_link", ros::Time(0), ros::Duration(3.0));
-        listener.lookupTransform("odom", "base_link",
+        listener.waitForTransform("/odom", "/base_link", ros::Time(0), ros::Duration(3.0));
+        listener.lookupTransform("/odom", "/base_link",
                                  ros::Time(0), transform);
     }
     catch (tf::TransformException ex) {

@@ -30,8 +30,8 @@ int main(int argc, char **argv){
         tf::TransformListener listener;
         tf::StampedTransform transform1;
         try{
-            listener.waitForTransform("base_link", "front_steering", ros::Time(0), ros::Duration(3.0));
-            listener.lookupTransform("base_link", "front_steering",
+            listener.waitForTransform("/base_link", "/front_steering", ros::Time(0), ros::Duration(3.0));
+            listener.lookupTransform("/base_link", "/front_steering",
                                      ros::Time(0), transform1);
             std::cout<<" get "<<transform1.getOrigin().x()<<std::endl;
         }
