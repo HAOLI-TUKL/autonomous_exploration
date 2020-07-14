@@ -31,7 +31,7 @@ download the code directly, and directory autonomous_exploration is considered a
 # Example
 <img src="https://github.com/githubleoleo/autonomous_exploration/blob/master/images/astar.png" alt="none" width="500" height="313" align="bottom" />
 <img src="https://github.com/githubleoleo/autonomous_exploration/blob/master/images/test.png" alt="none" width="500" height="313" align="bottom" />
-The video of the simulation can be found :https://www.youtube.com/watch?v=Z0UcYPeM29c
+The video of the simulation can be found :https://www.youtube.com/watch?v=Z0UcYPeM29c  
 The video of the jetson tx2 test can be found :https://www.youtube.com/watch?v=019Qi4b-pZ4
  
 
