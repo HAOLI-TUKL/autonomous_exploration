@@ -36,9 +36,13 @@ The video of the simulation can be found :https://www.youtube.com/watch?v=Z0UcYP
 # Test in Mobile Vehicle
 <img width="750" height="450" src="https://github.com/HAOLI-TUKL/autonomous_exploration/blob/master/images/realtest.gif"/>  
 The video of the jetson tx2 test can be found :https://www.youtube.com/watch?v=019Qi4b-pZ4     
+
+
 # Maintainers
 HAO LI leochina2018@163.com     
 JIANMING CHEN
+
+
 # More info
 
 # References
