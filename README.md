@@ -31,9 +31,9 @@ download the code directly, and directory autonomous_exploration is considered a
 # simulation in Gazebo 
 
 ![img](https://github.com/HAOLI-TUKL/autonomous_exploration/blob/master/images/simulation.gif)
-
 The video of the simulation can be found :https://www.youtube.com/watch?v=Z0UcYPeM29c 
 # test in mobile vehicle
+![img](https://github.com/HAOLI-TUKL/autonomous_exploration/blob/master/images/realtest.gif)
 The video of the jetson tx2 test can be found :https://www.youtube.com/watch?v=019Qi4b-pZ4   
 # Maintainers
 HAO LI leochina2018@163.com     
