@@ -30,11 +30,10 @@ download the code directly, and directory autonomous_exploration is considered a
 * my_car package and my_controller mainly deals with the vehicle model and driver for the simulation in Gazebo.
 # Simulation in Gazebo 
 
-![img](https://github.com/HAOLI-TUKL/autonomous_exploration/blob/master/images/simulation.gif)  
 <img width="750" height="450" src="https://github.com/HAOLI-TUKL/autonomous_exploration/blob/master/images/simulation.gif"/>  
 The video of the simulation can be found :https://www.youtube.com/watch?v=Z0UcYPeM29c 
 # Test in Mobile Vehicle
-![img](https://github.com/HAOLI-TUKL/autonomous_exploration/blob/master/images/realtest.gif)  
+<img width="750" height="450" src="https://github.com/HAOLI-TUKL/autonomous_exploration/blob/master/images/realtest.gif"/>  
 The video of the jetson tx2 test can be found :https://www.youtube.com/watch?v=019Qi4b-pZ4   
 # Maintainers
 HAO LI leochina2018@163.com     
