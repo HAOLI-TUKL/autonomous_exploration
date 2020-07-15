@@ -31,7 +31,7 @@ download the code directly, and directory autonomous_exploration is considered a
 # Simulation in Gazebo 
 
 ![img](https://github.com/HAOLI-TUKL/autonomous_exploration/blob/master/images/simulation.gif)  
-<img width="675" height="375" src="https://github.com/HAOLI-TUKL/autonomous_exploration/blob/master/images/simulation.gif"/>  
+<img width="750" height="450" src="https://github.com/HAOLI-TUKL/autonomous_exploration/blob/master/images/simulation.gif"/>  
 The video of the simulation can be found :https://www.youtube.com/watch?v=Z0UcYPeM29c 
 # Test in Mobile Vehicle
 ![img](https://github.com/HAOLI-TUKL/autonomous_exploration/blob/master/images/realtest.gif)  
