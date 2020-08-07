@@ -1,0 +1,78 @@
+<launch>
+
+    <!-- 设置launch文件的参数 -->
+    <arg name="paused" default="false"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="debug" default="false"/>
+    <arg name="world_name" value="$(find mycar)/world/dddd" />
+    <!-- 运行gazebo仿真环境          <arg name="world_name" value="$(arg world_name)" /> -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="debug" value="$(arg debug)" />
+        <arg name="gui" value="$(arg gui)" />
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="headless" value="$(arg headless)"/>
+        <!--arg name="world_name" value="$(arg world_name)"/-->
+    </include>
+    <!--include file="$(find amcl)/examples/amcl_omni.launch" /-->
+    <!-- 加载机器人模型描述参数  -->  
+
+    <param name="robot_description" command="$(find xacro)/xacro  $(find mycar)/urdf/xacro_gazebo/mcar_withlidar.xacro" />
+
+      <!-- 运行joint_state_publisher节点，发布机器人的关节状态  
+    <param name="use_gui" value="true"/> 
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node>-->
+
+    <!-- 运行robot_state_publisher节点，发布tf  -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"  output="screen" >
+        <param name="publish_frequency" type="double" value="50.0" />
+    </node>
+
+    <!-- 在gazebo中加载机器人模型 -->
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+          args="-urdf -model / -param robot_description"/>
+
+
+       <!--node name="rviz" pkg="rviz" type="rviz" args="-d $(find cartographer_ros)/configuration_files/demo_2d.rviz" required="true" /-->
+    <!--
+                <node name="cartographer_node" pkg="cartographer_ros"
+                      type="cartographer_node" args="
+                      -configuration_directory $(find cartographer_ros)/configuration_files
+                      -configuration_basename my_robot.lua"
+                      output="screen">
+                    remap from="scan" to="scan" /
+              <remap from="echoes" to="horizontal_laser_2d"/>
+        </node>
+        <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"
+              type="cartographer_occupancy_grid_node" args="-resolution 0.05" />
+        -->
+
+    <node name="gmapping" pkg="gmapping" type="slam_gmapping" args="scan:=/scan  _base_frame:=base_link  " >
+        <!--param name="map_update_interval" value="0.01"/-->
+        <param name="delta" value="0.15"/>
+    </node>
+
+
+    <!--node name="map_server" pkg="map_server" type="map_server" args="/home/parallels/lecture/data/dddd.yaml"/-->
+    <!--
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" args="map:=/map">
+        <rosparam file="$(find mycar)/yaml/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find mycar)/yaml/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find mycar)/yaml/localal_costmap_params.yaml" command="load" />
+        <rosparam file="$(find mycar)/yaml/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find mycar)/yaml/base_local_planner_params.yaml" command="load" />
+    </node>
+    -->
+    <!--remap from="map" to="/map"/-->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mycar)/urdf.rviz" required="true" />
+    <!--node name="frontier" pkg="my_frontier_exploration" type="frontier"/-->
+    <!-- 在gazebo中加载controllers-->
+    <!--node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+        output="screen" ns="//MyCar" args="middle_position_controller left_velocity_controller right_velocity_controller joint_state_controller"/-->
+
+    <!-- node name="rviz" pkg="rviz" type="rviz" args="-d $(find mcar)/urdf.rviz" required="true" /-->
+
+
+</launch>

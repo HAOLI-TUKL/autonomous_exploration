@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/parallels/github_ws/autonomous_exploration/src/my_move_base/cmake-build-debug/devel/setup.sh
