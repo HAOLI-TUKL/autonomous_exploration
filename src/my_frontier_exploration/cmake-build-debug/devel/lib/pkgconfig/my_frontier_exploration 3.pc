@@ -1,8 +1,0 @@
-prefix=/home/parallels/lecture/v0/src/my_frontier_exploration/cmake-build-debug/devel
-
-Name: my_frontier_exploration
-Description: Description of my_frontier_exploration
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

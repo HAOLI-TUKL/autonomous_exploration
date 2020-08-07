@@ -1,8 +1,0 @@
-prefix=/usr/local
-
-Name: my_frontier_exploration
-Description: Description of my_frontier_exploration
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

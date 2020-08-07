@@ -1,8 +1,0 @@
-prefix=/home/parallels/lecture/v0/src/my_move_base/cmake-build-debug/devel
-
-Name: my_move_base
-Description: Description of my_move_base
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

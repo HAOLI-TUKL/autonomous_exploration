@@ -1,5 +1,0 @@
-#determine the scale of the inflation for the obstacles, whose unit is a cell of the map
-inflation_scale = 6
-
-#determine the num of classes while doing the k nearest neighboring
-ratio_k_nearest_ = 2

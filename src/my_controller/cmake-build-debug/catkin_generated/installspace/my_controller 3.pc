@@ -1,8 +1,0 @@
-prefix=/usr/local
-
-Name: my_controller
-Description: Description of my_controller
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
