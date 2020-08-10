@@ -38,7 +38,7 @@ The video of the simulation can be found :https://www.youtube.com/watch?v=Z0UcYP
 
 
 <img width="750" height="450" src="https://github.com/HAOLI-TUKL/autonomous_exploration/blob/master/images/30seconds.gif"/> 
-The video of the jetson tx2 test can be found :https://www.youtube.com/watch?v=019Qi4b-pZ4     
+The video of the jetson tx2 test can be found :https://www.youtube.com/watch?v=bSvpSfiEyiM&t=14s    
 
 
 # Maintainers
