@@ -43,7 +43,7 @@ The video of the jetson tx2 test can be found :https://www.youtube.com/watch?v=b
 
 # Maintainers
 HAO LI leochina2018@163.com     
-JIANMING CHEN
+JIEMING CHEN
 
 
 # More info
