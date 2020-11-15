@@ -40,13 +40,17 @@ The video of the simulation can be found :https://www.youtube.com/watch?v=Z0UcYP
 <img width="750" height="450" src="https://github.com/HAOLI-TUKL/autonomous_exploration/blob/master/images/30seconds.gif"/> 
 The video of the jetson tx2 test can be found :https://www.youtube.com/watch?v=bSvpSfiEyiM&t=14s    
 
+# Hardwares Introduction
+
+<img width="500" height="650" src="https://github.com/HAOLI-TUKL/autonomous_exploration/blob/master/images/hardware3.png"/> 
+
 
 # Maintainers
 HAO LI leochina2018@163.com     
 JIEMING CHEN
 
 
-# More info
+
 
 # References
 Yamauchi, Brian. “A frontier-based approach for autonomous exploration.” Proceedings 1997 IEEE International Symposium on Computational Intelligence in Robotics and Automation CIRA'97. 'Towards New Computational Principles for Robotics and Automation' (1997): 146-151.
